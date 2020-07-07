@@ -25,6 +25,5 @@ public class Main {
             b.UpdateBoard();
             b.DisplayBoard();
         }
-
     }
 }
