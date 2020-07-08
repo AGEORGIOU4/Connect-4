@@ -1,20 +1,17 @@
 package com.company;
 
-public class Player {
-
-    // Fields
-
+public class Player
+{
     public void SelectPlayer(int random)
     {
-        if(random == 1)
+        if (random > 0)
         {
-            System.out.println("Player 1 is your turn!\n");
+            System.out.println("\nPlayer 1 it's your turn!");
         }
-        if(random == 2)
+        if (random < 0)
         {
-            System.out.println("Player 2 is your turn!\n");
+            System.out.println("\nPlayer 2 it's your turn!");
         }
-
     }
 
 }

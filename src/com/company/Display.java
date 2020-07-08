@@ -1,14 +1,13 @@
 package com.company;
 
-public class Display {
-
-    // Fields
-
+public class Display
+{
     public void DisplayNumbers()
     {
         //Display column numbers
-        System.out.println("-------------");
-        for (int i = 1; i < 8; i++) {
+        System.out.println("\n-------------");
+        for (int i = 1; i < 8; i++)
+        {
             System.out.print(i + " ");
         }
         System.out.println("\n-------------");
