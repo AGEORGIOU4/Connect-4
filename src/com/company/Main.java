@@ -11,7 +11,6 @@ public class Main
         Grid grid = new Grid();
         Player player = new Player();
 
-
         // Variables
         int counter = 0;
         int random = 1;
