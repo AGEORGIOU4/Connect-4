@@ -1,19 +1,22 @@
 package com.company;
+
 import java.util.Arrays;
 
 public class Grid
 {
     // Fields
     int[][] grid = new int[6][7];
-    int[] height = new int[8];
+    int[] row = new int[8];
 
     //Methods
 
     // Create a 2d array(i = row, j = column)
     public void CreateGrid()
     {
+        // Rows
         for (int i = 0; i < grid.length; i++)
         {
+            // Columns
             for (int j = 0; j < grid.length + 1; j++)
             {
                 grid[i][j] = 0;
@@ -21,28 +24,33 @@ public class Grid
         }
     }
 
-    public void UpdateGrid(int player, int input)
+    // Control the entries by increasing the height of the cell
+    public void CreateRows()
     {
-        // Insert the player's number on the selected cell
-        grid[height[input]][input - 1] = player;
-        height[input]--;
+        Arrays.fill(row, 5);
+    }
+
+
+    public void UpdateGrid(int player, int[] row, int column)
+    {
+        // Insert the player's number on the selected cell (we use height(array of 5's) to start from the bottom and decrease to move upwards)
+        grid[row[column]][column] = player;
+        row[column]--;
     }
 
     public void DisplayGrid()
     {
+        int i = 0;
+
         for (int[] ints : grid)
         {
             System.out.println();
+            System.out.print(i + "| ");
+            i++;
             for (int j = 0; j < grid.length + 1; j++)
             {
                 System.out.print(ints[j] + " ");
             }
         }
-    }
-
-    // Control the entries by increasing the height of the cell
-    public void ControlHeight()
-    {
-        Arrays.fill(height, 5);
     }
 }

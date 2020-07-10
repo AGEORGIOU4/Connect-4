@@ -14,4 +14,23 @@ public class Player
         }
     }
 
+    public int SwitchRandom(int random)
+    {
+        random *= -1;
+
+        return random;
+    }
+
+    public int SwitchPlayer(int currentPlayer, int random)
+    {
+        if (random > 0)
+        {
+            currentPlayer = 1;
+        }
+        else if (random < 0)
+        {
+            currentPlayer = 2;
+        }
+        return currentPlayer;
+    }
 }

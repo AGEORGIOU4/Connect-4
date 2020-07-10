@@ -5,22 +5,33 @@ public class Main
     public static void main(String[] args)
     {
         // Classes
-        Game game = new Game();
-        Player player = new Player();
-        Grid grid = new Grid();
+        Checks checks = new Checks();
         Display display = new Display();
+        Game game = new Game();
+        Grid grid = new Grid();
+        Player player = new Player();
+
 
         // Variables
         int counter = 0;
         int random = 1;
         int currentPlayer = 1;
-        int userInput;
         int maxCounter = 42;
-        boolean valid;
+
+        int userInput;
+        int[] row;
+        int column;
+
+        boolean userInputValid;
+        boolean heightValid;
+        boolean isConnectFour;
+        boolean gameIsFinished;
+
+
 
         // Things that happen only once
         grid.CreateGrid();
-        grid.ControlHeight();
+        grid.CreateRows();
 
         //=======================================Game Runtime=======================================//
 
@@ -29,41 +40,64 @@ public class Main
             // 1) Select Player
             player.SelectPlayer(random);
 
-            // 2) Display the Grid
+            // 2) Display the Grid & the indication numbers
             grid.DisplayGrid();
             display.DisplayNumbers();
 
-            // 3) Start the game
-            userInput = game.getInput();
-            valid = game.isHeightValid(grid.height[userInput]);
+            // 3) Start the game (user enters a number, program checks if the number is valid)
+            userInput = game.getUserInput();
+            userInputValid = game.isUserInputValid(userInput);
 
-            // 4a) Update the Grid if user input is valid
-            if (valid)
+            /* Set current row and column */
+            column = userInput;
+            row = grid.row;
+
+            /* While the input is not valid, program asks from the user to input a valid number */
+            while (!userInputValid)
             {
-                grid.UpdateGrid(currentPlayer, userInput);
+                userInput = game.getUserInput();
+                userInputValid = game.isUserInputValid(userInput);
 
-                // 5) Switch Players
-                random *= -1;
+                column = userInput;
+                row = grid.row;
+            }
 
-                if (random > 0)
-                {
-                    currentPlayer = 1;
-                }
-                else if (random < 0)
-                {
-                    currentPlayer = 2;
-                }
+            heightValid = game.isHeightValid(grid.row[column]);
+
+            // 4a) Update the Grid if user input is valid and height is between in the limit
+            if (heightValid)
+            {
+                // 5) Update Grid
+                grid.UpdateGrid(currentPlayer, row, column);
+
+                // 6) Program checks for horizontal, vertical, diagonal connect 4
+                checks.IsConnectFour(grid.grid, display, row, column);
+
+                // 7) Switch Players
+                random = player.SwitchRandom(random);
+                currentPlayer = player.SwitchPlayer(currentPlayer, random);
 
                 //New frame
                 counter++;
             }
-            // 4b) Display a warning message if the number is not valid
+
+            // 4b) Return
             else
             {
-                System.out.print("Please enter a valid number!");
+                display.DisplayHeightWarningMessage();
             }
-            // 6) Game is Finished
-            game.gameIsFinished(counter, maxCounter);
+
+            // 8) Game is Finished when all the cells are full or a player wins!
+            gameIsFinished = game.gameIsFinished(counter, maxCounter, grid);
+
+
+//            isConnectFour = checks.IsConnectFour(grid.grid, display, row, column);
+
+            if(gameIsFinished)
+            {
+                grid.DisplayGrid();
+                break;
+            }
         }
     }
 }

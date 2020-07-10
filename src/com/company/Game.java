@@ -3,39 +3,55 @@ import java.util.Scanner;
 
 public class Game
 {
-    public int getInput()
+    public int getUserInput()
     {
         Scanner myScanner = new Scanner(System.in);
         System.out.println();
 
-        // Fields
         int userInput = myScanner.nextInt();
 
-        if (userInput > 0 && userInput < 8)
+        return userInput;
+    }
+
+    public boolean isUserInputValid(int userInput)
+    {
+        boolean userInputValid;
+        if (userInput > -1 && userInput < 7)
         {
-            return userInput;
+            userInputValid = true;
         }
         else
         {
-            System.out.println("Enter a column between 1-7!");
-            getInput();
+            System.out.println("Enter a column between 0-6!");
+            userInputValid = false;
         }
-        return userInput;
+        return userInputValid;
     }
 
     public boolean isHeightValid(int heightInput)
     {
         boolean heightValid;
-        heightValid = heightInput >= 0;
+
+        if(heightInput >= 0 && heightInput < 8)
+        {
+            heightValid = true;
+        }
+        else
+        {
+            heightValid = false;
+        }
         return heightValid;
     }
 
-    public void gameIsFinished(int counter, int maxCounter)
+    public boolean gameIsFinished(int counter, int maxCounter, Grid grid)
     {
+        boolean gameIsFinished = false;
         if(counter == maxCounter)
         {
             System.out.println("Game is Finished!");
+            gameIsFinished = true;
         }
+        return gameIsFinished;
     }
 
     public void restartGame()
