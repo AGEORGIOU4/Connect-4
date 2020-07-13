@@ -10,22 +10,22 @@ public class Checks
     boolean isConnectFour = false;
 
 
-    public boolean isConnectFour(int[][] grid, Display display, int[] row, int column, int counter)
+    public boolean IsConnectFour(int[][] grid, Display display, int[] row, int column, int counter)
     {
         if (counter >= 6)
         {
-            checkRows(grid, display, row, column);
-            checkColumns(grid, display, row, column);
+            CheckRows(grid, display, row, column);
+            CheckColumns(grid, display, row, column);
         }
         if (counter >= 10)
         {
-            checkDiagonal(grid, display, row, column);
+            CheckDiagonal(grid, display, row, column);
         }
         return isConnectFour;
     }
 
     //Check rows (for performing, don't check if there are not 4 moves on the row yet
-    public void checkRows(int[][] grid, Display display, int[] row, int column)
+    public void CheckRows(int[][] grid, Display display, int[] row, int column)
     {
         r = row[column] + 1;
         c = column;
@@ -47,7 +47,7 @@ public class Checks
 
     //=========================COLUMN CHECKS===========================//
 
-    public void checkRightwards(int[][] grid, Display display)
+    public void CheckRightwards(int[][] grid, Display display)
     {
         if (grid[r][c] == grid[r][c + 1] &&
                 grid[r][c + 1] == grid[r][c + 2] &&
@@ -58,7 +58,7 @@ public class Checks
         }
     }
 
-    public void checkLeftwards(int[][] grid, Display display)
+    public void CheckLeftwards(int[][] grid, Display display)
     {
         if (grid[r][c] != 0 &&
                 grid[r][c] == grid[r][c - 1] &&
@@ -70,7 +70,7 @@ public class Checks
         }
     }
 
-    public void checkOneLeftTwoRight(int[][] grid, Display display)
+    public void CheckOneLeftTwoRight(int[][] grid, Display display)
     {
         if (grid[r][c] != 0 &&
                 grid[r][c] == grid[r][c - 1] &&
@@ -82,7 +82,7 @@ public class Checks
         }
     }
 
-    public void checkOneRightTwoLeft(int[][] grid, Display display)
+    public void CheckOneRightTwoLeft(int[][] grid, Display display)
     {
         if (grid[r][c] != 0 &&
                 grid[r][c] == grid[r][c - 1] &&
@@ -94,7 +94,7 @@ public class Checks
         }
     }
 
-    public void checkTwoLeftOneRight(int[][] grid, Display display)
+    public void CheckTwoLeftOneRight(int[][] grid, Display display)
     {
         if (grid[r][c] != 0 &&
                 grid[r][c] == grid[r][c + 1] &&
@@ -106,7 +106,7 @@ public class Checks
         }
     }
 
-    public void checkTwoRightOneLeft(int[][] grid, Display display)
+    public void CheckTwoRightOneLeft(int[][] grid, Display display)
     {
         if (grid[r][c] != 0 &&
                 grid[r][c] == grid[r][c - 1] &&
@@ -118,7 +118,7 @@ public class Checks
         }
     }
 
-    public void checkColumns(int[][] grid, Display display, int[] row, int column)
+    public void CheckColumns(int[][] grid, Display display, int[] row, int column)
     {
         r = row[column] + 1;
         c = column;
@@ -126,55 +126,55 @@ public class Checks
         switch (column)
         {
             case 0:
-                checkRightwards(grid, display);
+                CheckRightwards(grid, display);
                 break;
             case 1:
-                checkRightwards(grid, display);
-                checkOneLeftTwoRight(grid, display);
+                CheckRightwards(grid, display);
+                CheckOneLeftTwoRight(grid, display);
                 break;
             case 2:
-                checkRightwards(grid, display);
-                checkOneLeftTwoRight(grid, display);
-                checkTwoLeftOneRight(grid, display);
-                checkOneRightTwoLeft(grid, display);
-                checkTwoRightOneLeft(grid, display);
+                CheckRightwards(grid, display);
+                CheckOneLeftTwoRight(grid, display);
+                CheckTwoLeftOneRight(grid, display);
+                CheckOneRightTwoLeft(grid, display);
+                CheckTwoRightOneLeft(grid, display);
                 break;
             case 3:
-                checkRightwards(grid, display);
-                checkOneLeftTwoRight(grid, display);
-                checkTwoLeftOneRight(grid, display);
-                checkOneRightTwoLeft(grid, display);
-                checkTwoRightOneLeft(grid, display);
-                checkLeftwards(grid, display);
+                CheckRightwards(grid, display);
+                CheckOneLeftTwoRight(grid, display);
+                CheckTwoLeftOneRight(grid, display);
+                CheckOneRightTwoLeft(grid, display);
+                CheckTwoRightOneLeft(grid, display);
+                CheckLeftwards(grid, display);
                 break;
             case 4:
-                checkOneLeftTwoRight(grid, display);
-                checkTwoLeftOneRight(grid, display);
-                checkOneRightTwoLeft(grid, display);
-                checkTwoRightOneLeft(grid, display);
-                checkLeftwards(grid, display);
+                CheckOneLeftTwoRight(grid, display);
+                CheckTwoLeftOneRight(grid, display);
+                CheckOneRightTwoLeft(grid, display);
+                CheckTwoRightOneLeft(grid, display);
+                CheckLeftwards(grid, display);
                 break;
             case 5:
-                checkLeftwards(grid, display);
-                checkOneRightTwoLeft(grid, display);
+                CheckLeftwards(grid, display);
+                CheckOneRightTwoLeft(grid, display);
                 break;
             case 6:
-                checkLeftwards(grid, display);
+                CheckLeftwards(grid, display);
                 break;
         }
     }
 
-    public void checkDiagonal(int[][] grid, Display display, int[] row, int column)
+    public void CheckDiagonal(int[][] grid, Display display, int[] row, int column)
     {
         r = row[column] + 1;
         c = column;
 
-        checkLeftwardDiagonal(grid, display);
-        checkRightwardDiagonal(grid, display);
+        CheckLeftwardDiagonal(grid, display);
+        CheckRightwardDiagonal(grid, display);
     }
     //=========================DIAGONAL CHECKS===========================//
 
-    public void checkLeftwardDiagonal(int[][] grid, Display display)
+    public void CheckLeftwardDiagonal(int[][] grid, Display display)
     {
         if (r <= 2 && r >= 0 && c >= 3 && c <= 6)
         {
@@ -189,7 +189,7 @@ public class Checks
         }
     }
 
-    public void checkRightwardDiagonal(int[][] grid, Display display)
+    public void CheckRightwardDiagonal(int[][] grid, Display display)
     {
         if (r <= 2 && r >= 0 && c >= 0 && c <= 3)
         {

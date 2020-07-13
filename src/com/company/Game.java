@@ -7,7 +7,7 @@ public class Game
 
     boolean isGameFinished = false;
 
-    public int getUserInput()
+    public int GetUserInput()
     {
         Scanner myScanner = new Scanner(System.in);
         System.out.println();
@@ -15,7 +15,7 @@ public class Game
         return myScanner.nextInt();
     }
 
-    public boolean isUserInputValid(int userInput)
+    public boolean IsUserInputValid(int userInput)
     {
         boolean userInputValid;
         if (userInput > -1 && userInput < 7)
@@ -30,7 +30,7 @@ public class Game
         return userInputValid;
     }
 
-    public boolean isHeightValid(int heightInput)
+    public boolean IsHeightValid(int heightInput)
     {
         boolean heightValid;
 
@@ -38,7 +38,7 @@ public class Game
         return heightValid;
     }
 
-    public boolean gameIsFinished(int counter, int maxCounter, Grid grid, Display display)
+    public boolean GameIsFinished(int counter, int maxCounter, Grid grid, Display display)
     {
         if (counter == maxCounter)
         {

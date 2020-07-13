@@ -55,8 +55,8 @@ public class Main
             display.DisplayNumbers();
 
             // 3) Start the game (user enters a number, program checks if the number is valid)
-            userInput = game.getUserInput();
-            userInputValid = game.isUserInputValid(userInput);
+            userInput = game.GetUserInput();
+            userInputValid = game.IsUserInputValid(userInput);
 
             /* Set current row and column */
             column = userInput;
@@ -65,14 +65,14 @@ public class Main
             /* While the input is not valid, program asks from the user to input a valid number */
             while (!userInputValid)
             {
-                userInput = game.getUserInput();
-                userInputValid = game.isUserInputValid(userInput);
+                userInput = game.GetUserInput();
+                userInputValid = game.IsUserInputValid(userInput);
 
                 column = userInput;
                 row = grid.row;
             }
 
-            heightValid = game.isHeightValid(grid.row[column]);
+            heightValid = game.IsHeightValid(grid.row[column]);
 
             // 4a) Update the Grid if user input is valid and height is between in the limit
             if (heightValid)
@@ -84,7 +84,7 @@ public class Main
                 display.DisplayRowColumn(grid.grid, row, column);
 
                 // 6) Program checks for horizontal, vertical, diagonal connect 4 (for better performance start checking after 7 moves)
-                isConnectFour = checks.isConnectFour(grid.grid, display, row, column, counter);
+                isConnectFour = checks.IsConnectFour(grid.grid, display, row, column, counter);
 
                 // 7) Switch Players
                 random = player.SwitchRandom(random);
@@ -101,12 +101,12 @@ public class Main
             }
 
             // 8) Game is Finished when all the cells are full or a player wins!
-           gameIsFinished = game.gameIsFinished(counter, maxCounter, grid, display);
+           gameIsFinished = game.GameIsFinished(counter, maxCounter, grid, display);
 
             if(isConnectFour || gameIsFinished)
             {
                 grid.DisplayGrid();
-                break;
+                System.out.println("\n \nPress R to restart");
             }
         }
     }
