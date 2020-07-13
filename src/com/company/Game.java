@@ -3,6 +3,9 @@ import java.util.Scanner;
 
 public class Game
 {
+
+    boolean isGameFinished = false;
+
     public int getUserInput()
     {
         Scanner myScanner = new Scanner(System.in);
@@ -43,15 +46,14 @@ public class Game
         return heightValid;
     }
 
-    public boolean gameIsFinished(int counter, int maxCounter, Grid grid)
+    public boolean gameIsFinished(int counter, int maxCounter, Grid grid, Display display)
     {
-        boolean gameIsFinished = false;
         if(counter == maxCounter)
         {
             System.out.println("Game is Finished!");
-            gameIsFinished = true;
+            isGameFinished = true;
         }
-        return gameIsFinished;
+        return isGameFinished;
     }
 
     public void restartGame()

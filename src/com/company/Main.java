@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.Random;
 
 public class Main
@@ -16,7 +17,7 @@ public class Main
         int counter = 0;
         Random n = new Random();
         int random = n.nextInt(2);
-        random+=1;
+        random += 1;
         int currentPlayer = random;
         int maxCounter = 42;
 
@@ -26,9 +27,8 @@ public class Main
 
         boolean userInputValid;
         boolean heightValid;
-        boolean isConnectFour;
-        boolean gameIsFinished;
-
+        boolean isConnectFour = false;
+        boolean gameIsFinished = false;
 
 
         // Things that happen only once
@@ -77,7 +77,7 @@ public class Main
                 display.DisplayRowColumn(grid.grid, row, column);
 
                 // 6) Program checks for horizontal, vertical, diagonal connect 4 (for better performance start checking after 7 moves)
-                checks.isConnectFour(grid.grid, display, row, column, counter);
+                isConnectFour = checks.isConnectFour(grid.grid, display, row, column, counter);
 
                 // 7) Switch Players
                 random = player.SwitchRandom(random);
@@ -94,12 +94,9 @@ public class Main
             }
 
             // 8) Game is Finished when all the cells are full or a player wins!
-            gameIsFinished = game.gameIsFinished(counter, maxCounter, grid);
+           gameIsFinished = game.gameIsFinished(counter, maxCounter, grid, display);
 
-
-//            isConnectFour = checks.IsConnectFour(grid.grid, display, row, column);
-
-            if(gameIsFinished)
+            if(isConnectFour || gameIsFinished)
             {
                 grid.DisplayGrid();
                 break;

@@ -4,18 +4,28 @@ public class Checks
 {
 
     // FIELDS
-    int[][] grid;
-    int[] row;
-    int column;
     int c;
     int r;
-    int i = column;
+
     boolean isConnectFour = false;
+
+    public boolean isConnectFour(int[][] grid, Display display, int[] row, int column, int counter)
+    {
+        if (counter >= 6)
+        {
+            checkRows(grid, display, row, column);
+            checkColumns(grid, display, row, column);
+        }
+        if (counter >= 10)
+        {
+            checkDiagonal(grid, display, row, column);
+        }
+        return isConnectFour;
+    }
 
     //Check rows (for performing, don't check if there are not 4 moves on the row yet
     public boolean checkRows(int[][] grid, Display display, int[] row, int column)
     {
-
         r = row[column] + 1;
         c = column;
 
@@ -29,18 +39,17 @@ public class Checks
             {
                 display.DisplayWinningMessage();
                 isConnectFour = true;
+                break;
             }
         }
         return isConnectFour;
     }
-
 
     public boolean checkColumns(int[][] grid, Display display, int[] row, int column)
     {
         r = row[column] + 1;
         c = column;
 
-        // Check only right (1 check)
         switch (column)
         {
             case 0:
@@ -64,15 +73,18 @@ public class Checks
                 checkOneRightTwoLeft(grid, display, row, column);
                 checkTwoRightOneLeft(grid, display, row, column);
                 checkLeftwards(grid, display, row, column);
+                break;
             case 4:
                 checkOneLeftTwoRight(grid, display, row, column);
                 checkTwoLeftOneRight(grid, display, row, column);
                 checkOneRightTwoLeft(grid, display, row, column);
                 checkTwoRightOneLeft(grid, display, row, column);
                 checkLeftwards(grid, display, row, column);
+                break;
             case 5:
                 checkLeftwards(grid, display, row, column);
                 checkOneRightTwoLeft(grid, display, row, column);
+                break;
             case 6:
                 checkLeftwards(grid, display, row, column);
                 break;
@@ -80,14 +92,24 @@ public class Checks
         return isConnectFour;
     }
 
+    public boolean checkDiagonal(int[][] grid, Display display, int[] row, int column)
+    {
+        r = row[column] + 1;
+        c = column;
+
+        checkLeftwardDiagonal(grid, display, row, column);
+        checkRightwardDiagonal(grid, display, row, column);
+
+        return isConnectFour;
+    }
+
+    //=========================COLUMN CHECKS===========================//
 
     public boolean checkRightwards(int[][] grid, Display display, int[] row, int column)
     {
-        i = column;
-
-        if (grid[r][i] == grid[r][i + 1] &&
-                grid[r][i + 1] == grid[r][i + 2] &&
-                grid[r][i + 2] == grid[r][i + 3])
+        if (grid[r][c] == grid[r][c + 1] &&
+                grid[r][c + 1] == grid[r][c + 2] &&
+                grid[r][c + 2] == grid[r][c + 3])
         {
             display.DisplayWinningMessage();
             isConnectFour = true;
@@ -97,12 +119,10 @@ public class Checks
 
     public boolean checkLeftwards(int[][] grid, Display display, int[] row, int column)
     {
-        i = column;
-
-        if (grid[r][i] != 0 &&
-                grid[r][i] == grid[r][i - 1] &&
-                grid[r][i - 1] == grid[r][i - 2] &&
-                grid[r][i - 2] == grid[r][i - 3])
+        if (grid[r][c] != 0 &&
+                grid[r][c] == grid[r][c - 1] &&
+                grid[r][c - 1] == grid[r][c - 2] &&
+                grid[r][c - 2] == grid[r][c - 3])
         {
             display.DisplayWinningMessage();
             isConnectFour = true;
@@ -112,12 +132,12 @@ public class Checks
 
     public boolean checkOneLeftTwoRight(int[][] grid, Display display, int[] row, int column)
     {
-        i = column;
+        c = column;
 
-        if (grid[r][i] != 0 &&
-                grid[r][i] == grid[r][i - 1] &&
-                grid[r][i] == grid[r][i + 1] &&
-                grid[r][i + 1] == grid[r][i + 2])
+        if (grid[r][c] != 0 &&
+                grid[r][c] == grid[r][c - 1] &&
+                grid[r][c] == grid[r][c + 1] &&
+                grid[r][c + 1] == grid[r][c + 2])
         {
             display.DisplayWinningMessage();
             isConnectFour = true;
@@ -127,12 +147,12 @@ public class Checks
 
     public boolean checkOneRightTwoLeft(int[][] grid, Display display, int[] row, int column)
     {
-        i = column;
+        c = column;
 
-        if (grid[r][i] != 0 &&
-                grid[r][i] == grid[r][i - 1] &&
-                grid[r][i] == grid[r][i + 1] &&
-                grid[r][i + 1] == grid[r][i + 2])
+        if (grid[r][c] != 0 &&
+                grid[r][c] == grid[r][c - 1] &&
+                grid[r][c] == grid[r][c + 1] &&
+                grid[r][c + 1] == grid[r][c + 2])
         {
             display.DisplayWinningMessage();
             isConnectFour = true;
@@ -142,12 +162,12 @@ public class Checks
 
     public boolean checkTwoLeftOneRight(int[][] grid, Display display, int[] row, int column)
     {
-        i = column;
+        c = column;
 
-        if (grid[r][i] != 0 &&
-                grid[r][i] == grid[r][i + 1] &&
-                grid[r][i] == grid[r][i - 1] &&
-                grid[r][i - 1] == grid[r][i - 2])
+        if (grid[r][c] != 0 &&
+                grid[r][c] == grid[r][c + 1] &&
+                grid[r][c] == grid[r][c - 1] &&
+                grid[r][c - 1] == grid[r][c - 2])
         {
             display.DisplayWinningMessage();
             isConnectFour = true;
@@ -157,12 +177,12 @@ public class Checks
 
     public boolean checkTwoRightOneLeft(int[][] grid, Display display, int[] row, int column)
     {
-        i = column;
+        c = column;
 
-        if (grid[r][i] != 0 &&
-                grid[r][i] == grid[r][i - 1] &&
-                grid[r][i] == grid[r][i + 1] &&
-                grid[r][i + 1] == grid[r][i + 2])
+        if (grid[r][c] != 0 &&
+                grid[r][c] == grid[r][c - 1] &&
+                grid[r][c] == grid[r][c + 1] &&
+                grid[r][c + 1] == grid[r][c + 2])
         {
             display.DisplayWinningMessage();
             isConnectFour = true;
@@ -170,15 +190,39 @@ public class Checks
         return isConnectFour;
     }
 
+    //=========================DIAGONAL CHECKS===========================//
 
-    public boolean isConnectFour(int[][] grid, Display display, int[] row, int column, int counter)
+    public boolean checkLeftwardDiagonal(int[][] grid, Display display, int[] row, int column)
     {
-        if (counter >= 6)
+        if (r <= 2 && r >= 0 && c >= 3 && c <= 6)
         {
-            checkRows(grid, display, row, column);
-            checkColumns(grid, display, row, column);
+            if (grid[r][c] != 0 &&
+                    grid[r][c] == grid[r + 1][c - 1] &&
+                    grid[r + 1][c - 1] == grid[r + 2][c - 2] &&
+                    grid[r + 2][c - 2] == grid[r + 3][c - 3])
+            {
+                display.DisplayWinningMessage();
+                isConnectFour = true;
+            }
         }
         return isConnectFour;
     }
+
+    public boolean checkRightwardDiagonal(int[][] grid, Display display, int[] row, int column)
+    {
+        if (r <= 2 && r >= 0 && c >= 0 && c <= 3)
+        {
+            if (grid[r][c] != 0 &&
+                    grid[r][c] == grid[r + 1][c + 1] &&
+                    grid[r + 1][c + 1] == grid[r + 2][c + 2] &&
+                    grid[r + 2][c + 2] == grid[r + 3][c + 3])
+            {
+                display.DisplayWinningMessage();
+                isConnectFour = true;
+            }
+        }
+        return isConnectFour;
+    }
+
 }
 
