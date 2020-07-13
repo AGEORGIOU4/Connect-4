@@ -1,4 +1,5 @@
 package com.company;
+import java.util.Random;
 
 public class Main
 {
@@ -13,8 +14,10 @@ public class Main
 
         // Variables
         int counter = 0;
-        int random = 1;
-        int currentPlayer = 1;
+        Random n = new Random();
+        int random = n.nextInt(2);
+        random+=1;
+        int currentPlayer = random;
         int maxCounter = 42;
 
         int userInput;
@@ -36,6 +39,7 @@ public class Main
 
         while (counter < maxCounter)
         {
+
             // 1) Select Player
             player.SelectPlayer(random);
 
@@ -69,8 +73,11 @@ public class Main
                 // 5) Update Grid
                 grid.UpdateGrid(currentPlayer, row, column);
 
-                // 6) Program checks for horizontal, vertical, diagonal connect 4
-                checks.IsConnectFour(grid.grid, display, row, column);
+                // 5a) Display the row and column of the last move
+                display.DisplayRowColumn(grid.grid, row, column);
+
+                // 6) Program checks for horizontal, vertical, diagonal connect 4 (for better performance start checking after 7 moves)
+                checks.isConnectFour(grid.grid, display, row, column, counter);
 
                 // 7) Switch Players
                 random = player.SwitchRandom(random);

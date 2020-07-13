@@ -29,4 +29,11 @@ public class Display
         System.out.print("Connect 4!");
         System.out.println("\n----------");
     }
+
+    public void DisplayRowColumn(int[][] grid, int[] row, int column)
+    {
+        System.out.println("Row: " + (row[column] + 1));
+        System.out.println("Column: " + column);
+        System.out.println(grid[row[column] + 1][column]);
+    }
 }
