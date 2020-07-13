@@ -9,6 +9,7 @@ public class Checks
 
     boolean isConnectFour = false;
 
+
     public boolean isConnectFour(int[][] grid, Display display, int[] row, int column, int counter)
     {
         if (counter >= 6)
