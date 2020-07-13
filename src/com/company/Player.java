@@ -16,7 +16,7 @@ public class Player
 
     public int SwitchRandom(int random)
     {
-        if(random == 1)
+        if (random == 1)
         {
             random = 2;
         }

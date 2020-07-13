@@ -1,5 +1,13 @@
-package com.company;
+/**
+ * Author: Andreas Georgiou
+ * Email: ageorgiou4@uclan.ac.uk
+ * Connect Four is a two player classic board game. To win this game,
+ * the player must connect a line by four discs in a horizontal,
+ * vertical or diagonal row (numbers in this case)
+ * This program was assigned at UCLan as a Summer Hacker Challenge
+ */
 
+package com.company;
 import java.util.Random;
 
 public class Main
@@ -28,8 +36,7 @@ public class Main
         boolean userInputValid;
         boolean heightValid;
         boolean isConnectFour = false;
-        boolean gameIsFinished = false;
-
+        boolean gameIsFinished;
 
         // Things that happen only once
         grid.CreateGrid();

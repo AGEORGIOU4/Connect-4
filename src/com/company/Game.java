@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.Scanner;
 
 public class Game
@@ -11,9 +12,7 @@ public class Game
         Scanner myScanner = new Scanner(System.in);
         System.out.println();
 
-        int userInput = myScanner.nextInt();
-
-        return userInput;
+        return myScanner.nextInt();
     }
 
     public boolean isUserInputValid(int userInput)
@@ -35,29 +34,17 @@ public class Game
     {
         boolean heightValid;
 
-        if(heightInput >= 0 && heightInput < 8)
-        {
-            heightValid = true;
-        }
-        else
-        {
-            heightValid = false;
-        }
+        heightValid = heightInput >= 0 && heightInput < 8;
         return heightValid;
     }
 
     public boolean gameIsFinished(int counter, int maxCounter, Grid grid, Display display)
     {
-        if(counter == maxCounter)
+        if (counter == maxCounter)
         {
             System.out.println("Game is Finished!");
             isGameFinished = true;
         }
         return isGameFinished;
-    }
-
-    public void restartGame()
-    {
-
     }
 }

@@ -30,7 +30,6 @@ public class Grid
         Arrays.fill(row, 5);
     }
 
-
     public void UpdateGrid(int player, int[] row, int column)
     {
         // Insert the player's number on the selected cell (we use height(array of 5's) to start from the bottom and decrease to move upwards)
