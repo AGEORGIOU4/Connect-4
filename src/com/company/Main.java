@@ -8,7 +8,10 @@
  * I have tried to reduce as much as possible the checks for optimal performance
  */
 
+
 package com.company;
+
+import com.company.*;
 
 import java.util.Random;
 
