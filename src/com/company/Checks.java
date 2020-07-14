@@ -176,6 +176,7 @@ public class Checks
 
     public void CheckLeftwardDiagonal(int[][] grid, Display display)
     {
+        // Downwards
         if (r <= 2 && r >= 0 && c >= 3 && c <= 6)
         {
             if (grid[r][c] != 0 &&
@@ -187,16 +188,43 @@ public class Checks
                 isConnectFour = true;
             }
         }
+
+        // Upwards
+        if (r <= 5 && r >= 3 && c >= 3 && c <= 6)
+        {
+            if (grid[r][c] != 0 &&
+                    grid[r][c] == grid[r - 1][c - 1] &&
+                    grid[r - 1][c - 1] == grid[r - 2][c - 2] &&
+                    grid[r - 2][c - 2] == grid[r - 3][c - 3])
+            {
+                display.DisplayWinningMessage();
+                isConnectFour = true;
+            }
+        }
     }
 
     public void CheckRightwardDiagonal(int[][] grid, Display display)
     {
+        // Downwards
         if (r <= 2 && r >= 0 && c >= 0 && c <= 3)
         {
             if (grid[r][c] != 0 &&
                     grid[r][c] == grid[r + 1][c + 1] &&
                     grid[r + 1][c + 1] == grid[r + 2][c + 2] &&
                     grid[r + 2][c + 2] == grid[r + 3][c + 3])
+            {
+                display.DisplayWinningMessage();
+                isConnectFour = true;
+            }
+        }
+
+        // Upwards
+        if (r <= 5 && r >= 3 && c >= 0 && c <= 3)
+        {
+            if (grid[r][c] != 0 &&
+                    grid[r][c] == grid[r - 1][c + 1] &&
+                    grid[r - 1][c + 1] == grid[r - 2][c + 2] &&
+                    grid[r - 2][c + 2] == grid[r - 3][c + 3])
             {
                 display.DisplayWinningMessage();
                 isConnectFour = true;
