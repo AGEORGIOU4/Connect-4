@@ -106,7 +106,6 @@ public class Main
             if(isConnectFour || gameIsFinished)
             {
                 grid.DisplayGrid();
-                System.out.println("\n \nPress R to restart");
             }
         }
     }
