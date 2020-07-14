@@ -5,9 +5,11 @@
  * the player must connect a line by four discs in a horizontal,
  * vertical or diagonal row (numbers in this case)
  * This program was assigned at UCLan as a Summer Hacker Challenge
+ * I have tried to reduce as much as possible the checks for optimal performance
  */
 
 package com.company;
+
 import java.util.Random;
 
 public class Main
@@ -101,11 +103,12 @@ public class Main
             }
 
             // 8) Game is Finished when all the cells are full or a player wins!
-           gameIsFinished = game.GameIsFinished(counter, maxCounter, grid, display);
+            gameIsFinished = game.GameIsFinished(counter, maxCounter, grid, display);
 
-            if(isConnectFour || gameIsFinished)
+            if (isConnectFour || gameIsFinished)
             {
                 grid.DisplayGrid();
+                break;
             }
         }
     }
