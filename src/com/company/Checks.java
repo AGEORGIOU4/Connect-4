@@ -16,7 +16,7 @@ public class Checks
     // FIELDS
     int c;
     int r;
-
+//
     boolean isConnectFour = false;
 
     public boolean IsConnectFour(int[][] grid, Display display, int[] row, int column, int counter)
